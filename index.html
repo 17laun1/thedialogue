@@ -24,7 +24,6 @@
         margin-top: 60px;
         padding: 10px;
       }
-      /* Keeping all your original styles so the layout stays safe */
       .container {
         display: flex;
         flex-wrap: wrap;
@@ -40,6 +39,7 @@
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease;
+        padding-bottom: 15px; /* Added some padding at bottom */
       }
       .card:hover {
         transform: translateY(-5px);
@@ -53,18 +53,29 @@
       }
       .card h2 {
         font-size: 1em;
-        padding: 10px; /* Adjusted padding for better fit */
+        padding: 10px 10px 5px 10px;
         margin: 0;
+      }
+      /* New style for the Platform text */
+      .card .platform {
+        color: #85bcce; /* Using the Preface light blue */
+        font-size: 0.8em;
+        font-weight: 600;
+        margin: 0;
+        padding: 0 10px;
+        text-transform: uppercase;
       }
       .card h4 {
         color: #6d6d6d;
-        padding-bottom: 20px;
+        padding: 5px 10px 10px 10px;
         font-size: 0.8em;
         margin: 0;
       }
       a {
         text-decoration: none;
-        color: inherit; /* Inherit color to keep text style */
+        color: inherit;
+        display: block; /* Make the whole link block fill the card */
+        height: 100%;
       }
     </style>
   </head>
@@ -82,103 +93,115 @@
     <div id="cardContainer" class="container"></div>
 
     <script>
-      // I am keeping the existing data so the page isn't empty when you test it.
-      // We will replace this with your CSV data later!
-      
+      // Generated from CSV
       const imageMap = {
-        "Minecraft-inspired Arcade Game": "images/Ellie Wong.png",
-        "Tetris in Chrome extension": "images/Kayley Kwok.png",
-        "MTR project": "images/Ka Him.JPG",
-        "Space Invader": "images/Chester.png",
-        "Comic Nostalgia Gang": "images/Caleb.png",
-        "Memory Game": "images/Emma - Memory.png",
-        Portfolio: "images/Emma.jpeg",
-        ChatApp: "images/Neo.png",
-        "One Piece Quiz": "images/Junghu.jpeg",
-        "Recycling Game": "images/EthanZheng.jpeg",
-        "NBA Data Analysis": "images/Elvin Cheung - NBA.jpeg",
-        "2048 game": "images/Elvin Cheung - 2048.png",
-        "Liverpool Website": "images/Jayden Heng.png",
-        FUNLAND: "images/Alicia.png",
-        "Amelia's Station": "images/Amelia.png",
-        "School Club Slides made by Kelbee!": "images/Kelbee.png",
-        "Treasure Hunt": "images/Enoch Chiu.png",
-        "Be a Little YouTuber": "images/Gareth-video.png",
-        "Football Analysis": "images/Ethan Yip.png",
-        "Save The Ocean - Julien's Twist": "images/Julien Tsang.png",
-        "Snake Game": "images/Roy Chi.png",
-        "Card Game": "images/Nok Yin.png",
-        "Portfolio Website": "images/Evan Lam.png",
-        "App Inventor Game": "images/Marquis.png",
-        Wordle: "images/Tyler.png",
-        "Tennis Web Scrapping": "images/TylerTennis.png",
+        "AI Quiz Maker": "images/jonas.png",
+        "AI Presentation": "images/yukhangwong.png",
+        "AI ChatBot": "images/nicholaschen.png",
+        "Area 51 Rescue": "images/joshuachu.png",
+        "Maze Game": "images/theoso.jpeg",
+        "AI Superhero Story": "images/carlli.png",
+        "AI vs Zombie": "images/tomwu.png",
+        "Platformer": "images/winstonchu.png",
+        "Laser Battle": "images/houlim.png",
+        "AI Daily Routine Helper": "images/samialim.png",
+        "To Do List": "images/chloewong.png",
+        "Focus Forest": "images/tadeoso.png",
+        "AI Good Bad Robots": "images/hannahshao.png",
+        "Slenderman Game": "images/kannonchan.jpeg",
+        "Smart Lunch Chooser": "images/warisalim.png",
+        "App Collection": "images/vaniashao.png",
+        "AI Study Partner": "images/karinamok.png",
+        "Labubu App": "images/venuschao.png",
+        "Feelings Feedback": "images/lauraman.png",
       };
 
       const studentNames = {
-        "Minecraft-inspired Arcade Game": "Ellie Wong",
-        "Tetris in Chrome extension": "Kayley Kwok",
-        "MTR project": "Ka Him Leung",
-        "Space Invader": "Chester Tam",
-        "Comic Nostalgia Gang": "Caleb Hui",
-        "Memory Game": "Emma Hunt",
-        Portfolio: "Emma Hunt",
-        ChatApp: "Neo Lung",
-        "One Piece Quiz": "JungHu",
-        "Recycling Game": "Ethan Zheng",
-        "NBA Data Analysis": "Elvin Cheung",
-        "2048 game": "Elvin Cheung",
-        "Liverpool Website": "Jayden Heng",
-        FUNLAND: "Alicia Tan",
-        "Amelia's Station": "Amelia Tan",
-        "School Club Slides made by Kelbee!": "Kelbee Fok",
-        "Treasure Hunt": "Enoch Chiu",
-        "Be a Little YouTuber": "Gareth Li",
-        "Football Analysis": "Ethan Yip",
-        "Save The Ocean - Julien's Twist": "Julien Tsang",
-        "Snake Game": "Roy Chi",
-        "Card Game": "Nok Yin Lim",
-        "Portfolio Website": "Evan Lam",
-        "App Inventor Game": "Marquis Chan",
-        Wordle: "Tyler Takahashi",
-        "Tennis Web Scrapping": "Tyler Takahashi",
+        "AI Quiz Maker": "Jonas Ho",
+        "AI Presentation": "Yuk Hang Wong",
+        "AI ChatBot": "Nicholas Chen",
+        "Area 51 Rescue": "Joshua Chu",
+        "Maze Game": "Theo So",
+        "AI Superhero Story": "Carl Li",
+        "AI vs Zombie": "Tom Wu",
+        "Platformer": "Winston Chu",
+        "Laser Battle": "Hou Lim Cheong",
+        "AI Daily Routine Helper": "Sami Alim",
+        "To Do List": "Chloe Wong",
+        "Focus Forest": "Tadeo So",
+        "AI Good Bad Robots": "Hannah Shao",
+        "Slenderman Game": "Kannon Chan",
+        "Smart Lunch Chooser": "Waris Alim",
+        "App Collection": "Vania Shao",
+        "AI Study Partner": "Karina Mok",
+        "Labubu App": "Venus Chao",
+        "Feelings Feedback": "Laura Man",
+      };
+
+      const platforms = {
+        "AI Quiz Maker": "Full Stack",
+        "AI Presentation": "ScratchJr",
+        "AI ChatBot": "Python",
+        "Area 51 Rescue": "Python",
+        "Maze Game": "Unity",
+        "AI Superhero Story": "ScratchJr",
+        "AI vs Zombie": "ScratchJr",
+        "Platformer": "Unity",
+        "Laser Battle": "Scratch",
+        "AI Daily Routine Helper": "Python",
+        "To Do List": "Python",
+        "Focus Forest": "Python",
+        "AI Good Bad Robots": "Python",
+        "Slenderman Game": "Unity",
+        "Smart Lunch Chooser": "Python",
+        "App Collection": "MIT App Inventor",
+        "AI Study Partner": "Python",
+        "Labubu App": "MIT App Inventor",
+        "Feelings Feedback": "MIT App Inventor",
       };
 
       const links = {
-        "Minecraft-inspired Arcade Game": "https://drive.google.com/file/d/1reumYtjH__4pDZ3D2OvDEFVLXSRT5W5B/preview",
-        "Tetris in Chrome extension": "https://chromewebstore.google.com/detail/sirtet/ihladjbfkfejijomgfncgjgdlkaggkie",
-        "MTR project": "https://stevenleung124.itch.io/hkr-on-the-go",
-        "Space Invader": "https://chestnut-god.itch.io/space-invaders",
-        "Comic Nostalgia Gang": "https://bit.ly/comicNostalgiaGang",
-        "Memory Game": "https://227560em.github.io/Memory-Game/",
-        Portfolio: "https://227560em.github.io/Web-Development-Portfolio/",
-        ChatApp: "https://drive.google.com/file/d/1VcyvbGewM8lwsHaGgsAvjZJDmTIAetyQ/preview",
-        "One Piece Quiz": "https://drive.google.com/file/d/1TreneblRvCLq1KQedwjc6mdfcbijD7E4/preview",
-        "Recycling Game": "https://scratch.mit.edu/projects/1132224587",
-        "NBA Data Analysis": "https://drive.google.com/file/d/1WKo9cmM-KeUHwm8oHgKpHq0WDRBPyH0N/preview",
-        "2048 game": "https://2048-sepia-nine.vercel.app/",
-        "Liverpool Website": "https://liverpooldream.netlify.app/",
-        FUNLAND: "https://scratch.mit.edu/projects/984574965/",
-        "Amelia's Station": "https://scratch.mit.edu/projects/970033341/",
-        "School Club Slides made by Kelbee!": "https://docs.google.com/presentation/d/1tm6m9VoGVDXiYpaz4RsWElh671dvYel0tFItPimkpDU/edit#slide=id.p1",
-        "Treasure Hunt": "https://enochc.itch.io/treasure-hunt",
-        "Be a Little YouTuber": "https://drive.google.com/file/d/12T7uTmajt-_Q6xSQvW3x0OVGquH6mJv5/preview",
-        "Football Analysis": "https://drive.google.com/file/d/1WGZFeiG0CK92lczet-RmaW9gjvWqzk3P/preview",
-        "Save The Ocean - Julien's Twist": "https://drive.google.com/file/d/1mQ737Y0kdhQ0yqCoyoB66Ul9xpZo9JNn/preview",
-        "Snake Game": "https://drive.google.com/file/d/19HIFME8Vv_G3duqMRhUNDvrsA4TL65dQ/preview",
-        "Card Game": "https://drive.google.com/file/d/1l5nrIdMVbeSCowkJLF059-cTDTGuh5BC/preview",
-        "Portfolio Website": "https://superel123.github.io/Portfolio/",
-        "App Inventor Game": "https://drive.google.com/file/d/1CtefFzzBEvCwWhul7xNKYACjcMhcb2v1/preview",
-        Wordle: "https://siuwai0914.itch.io/wordle",
-        "Tennis Web Scrapping": "https://drive.google.com/file/d/1w925LanZfeB46kjR3E2WHUIXpEFJDvli/preview",
+        "AI Quiz Maker": "https://drive.google.com/file/d/12UXaI5wcPkjhpCyiRcCXAqxS5bzoPd3_/view?usp=sharing",
+        "AI Presentation": "https://drive.google.com/file/d/11az23eDc6wAUCdJqcHByZnRxs05fx6G8/view?usp=sharing",
+        "AI ChatBot": "https://drive.google.com/file/d/11x3A6YQEYALBJoaREgulXu3oYXmpGoT4/view?usp=sharing",
+        "Area 51 Rescue": "https://drive.google.com/file/d/15uAjzsIhokfRvO3fpJgpmFfmdOQSe5LA/view?usp=sharing",
+        "Maze Game": "https://drive.google.com/file/d/1BVuNSv3Nul-3OhEHPFyrTYsyzBYVFH4y/view?usp=sharing",
+        "AI Superhero Story": "https://drive.google.com/file/d/1ZnQV_LTkvTWZX24DhMQsZ9C5rbbxM3sr/view?usp=sharing",
+        "AI vs Zombie": "https://drive.google.com/file/d/1HjK0LQfPkBirFmvBxAqlsbwloUqQSh5D/view?usp=sharing",
+        "Platformer": "https://drive.google.com/file/d/1UDF44Ukz45_F0vVAbGc8O5fJze9-reXE/view?usp=sharing",
+        "Laser Battle": "https://drive.google.com/file/d/1tS586rQR2i_4XOCGYqH3mzfMhvBc4V5H/view?usp=sharing",
+        "AI Daily Routine Helper": "https://www.canva.com/design/DAG3QYqH95c/Tlv4HAsfOpVhI2yPeWtv0g/watch?utm_content=DAG3QYqH95c&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h6c1a35e0a1",
+        "To Do List": "https://drive.google.com/file/d/1hcY6uHxNnY8I7E-UZ1T8Tvt314u2aCJo/view?usp=sharing",
+        "Focus Forest": "https://drive.google.com/file/d/1Jfzd4uaAmZACUwyVNdW7biGjhyht685L/view?usp=sharing",
+        "AI Good Bad Robots": "https://www.canva.com/design/DAG3DyZCUfE/jUqWQp719aTVrfYVu5KAfQ/watch?utm_content=DAG3DyZCUfE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb79f1e3489",
+        "Slenderman Game": "https://drive.google.com/file/d/1To2fXN1D-tE0UK5VMqu7xo2YIa4d-nyt/view?usp=sharing",
+        "Smart Lunch Chooser": "https://drive.google.com/file/d/1E4BNzBgbKMOWJ1HAW6ATqWjQeUapW_yM/view?usp=sharing",
+        "App Collection": "https://drive.google.com/file/d/1DPcdDOD-8u0SrvC7LO7JKu0t40rktC5J/view?usp=sharing",
+        "AI Study Partner": "https://drive.google.com/file/d/18AHoDeg8DCQn46_ymep4rpMkBjtabWjM/view?usp=sharing",
+        "Labubu App": "https://drive.google.com/file/d/1-IS-MqutiPWCxHGjY0-zwToIrfn52QMa/view?usp=sharing",
+        "Feelings Feedback": "https://drive.google.com/file/d/1QsBsYjk9kEigzFsoRFzmZ_1N7kZmWixn/view?usp=sharing",
       };
 
       const projects = [
-        "Minecraft-inspired Arcade Game", "Tetris in Chrome extension", "MTR project", "Space Invader",
-        "Comic Nostalgia Gang", "Memory Game", "Portfolio", "ChatApp", "One Piece Quiz",
-        "Recycling Game", "NBA Data Analysis", "2048 game", "Liverpool Website", "FUNLAND",
-        "Amelia's Station", "School Club Slides made by Kelbee!", "Treasure Hunt", "Be a Little YouTuber",
-        "Football Analysis", "Save The Ocean - Julien's Twist", "Snake Game", "Card Game",
-        "Portfolio Website", "App Inventor Game", "Wordle", "Tennis Web Scrapping"
+        "AI Quiz Maker",
+        "AI Presentation",
+        "AI ChatBot",
+        "Area 51 Rescue",
+        "Maze Game",
+        "AI Superhero Story",
+        "AI vs Zombie",
+        "Platformer",
+        "Laser Battle",
+        "AI Daily Routine Helper",
+        "To Do List",
+        "Focus Forest",
+        "AI Good Bad Robots",
+        "Slenderman Game",
+        "Smart Lunch Chooser",
+        "App Collection",
+        "AI Study Partner",
+        "Labubu App",
+        "Feelings Feedback"
       ];
 
       const cardContainer = document.getElementById("cardContainer");
@@ -192,15 +215,23 @@
         link.target = "_blank";
 
         const image = document.createElement("img");
+        // Fallback if image not found in map, or use just the map
         image.src = imageMap[project];
         image.alt = project;
         link.appendChild(image);
 
-        // We append the title and name to the link so clicking anywhere on text works too
+        // Title
         const title = document.createElement("h2");
         title.textContent = project;
         link.appendChild(title);
 
+        // Platform (New!)
+        const platformLabel = document.createElement("div");
+        platformLabel.className = "platform";
+        platformLabel.textContent = platforms[project];
+        link.appendChild(platformLabel);
+
+        // Student Name
         const subtitle = document.createElement("h4");
         subtitle.textContent = studentNames[project];
         link.appendChild(subtitle);
